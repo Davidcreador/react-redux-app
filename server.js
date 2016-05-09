@@ -9,14 +9,12 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var async = require('async');
 var colors = require('colors');
 var mongoose = require('mongoose');
-var request = require('request');
-var xml2js = require('xml2js');
 var _ = require('underscore');
 
 var config = require('./config/config');
+var router = require('./routes/routes');
 
 var app = express();
 
@@ -43,9 +41,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(express.static(path.join(__dirname, 'public')));
+router(app);
 
 app.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
-
-require('./routes/routes')(app);

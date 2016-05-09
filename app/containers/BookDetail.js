@@ -12,11 +12,11 @@ class BookDetail extends Component {
     }
 
     return (
-      <div>
+      <blockquote className='blockquote'>
         <h3>Details for Book:</h3>
         <h4>Title: {this.props.book.title}</h4>
         <p>Pages: {this.props.book.pages}</p>
-      </div>
+      </blockquote>
     );
   }
 }
